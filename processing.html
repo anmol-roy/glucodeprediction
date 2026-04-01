@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Processing | GlucoAI</title>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- NAVBAR - Same across all pages -->
+  <nav class="navbar">
+    <div class="navbar-logo">
+      <div class="pulse-dot"></div>
+      GlucoAI <span class="navbar-badge">| Processing</span>
+    </div>
+    <div class="navbar-links">
+      <a href="index.html" class="nav-link">Home</a>
+      <a href="detect.html" class="nav-link">Detection</a>
+      <a href="index.html#features" class="nav-link">Features</a>
+    </div>
+    <a href="detect.html" class="btn btn-outline btn-sm">
+      ← New Detection
+    </a>
+  </nav>
+
+  <!-- MAIN CONTENT -->
+  <main id="main-content">
+    
+    <!-- PAGE HEADER -->
+    <section class="section-header-page">
+      <div class="container">
+        <div class="badge badge-processing">
+          <div class="processing-dot"></div>
+          Processing… · AI Analysis
+        </div>
+        <h1 class="page-title">Processing Signal Data</h1>
+        <p class="page-subtitle">Applying AI models to analyze your PPG signal</p>
+      </div>
+    </section>
+
+    <!-- PROCESSING CONTENT -->
+    <div class="container">
+      
+      <!-- CENTRAL LOADER -->
+      <div class="loader-container">
+        <div class="ai-loader">
+          <div class="ring"></div>
+          <div class="ring"></div>
+          <div class="ring"></div>
+          <div class="loader-glow"></div>
+        </div>
+      </div>
+      <div class="loader-text" id="loaderText">AI ENGINE ACTIVE</div>
+
+      <!-- PROGRESS SECTION -->
+      <div class="progress-section">
+        <div class="progress-header">
+          <span>Processing Progress</span>
+          <span id="percentageDisplay" class="progress-percentage">0%</span>
+        </div>
+        <div class="progress-bar-container">
+          <div class="progress-fill" id="progressFill"></div>
+        </div>
+        <div class="percentage-large" id="percentageLarge">0%</div>
+      </div>
+
+      <!-- PIPELINE STEPS -->
+      <div class="card pipeline-card">
+        <div class="card-header">
+          <h3 class="card-title">📊 AI Processing Pipeline</h3>
+        </div>
+        <div class="card-body">
+          <div class="pipeline-steps" id="stepsContainer">
+            <div class="pipeline-step-item" id="step1">
+              <div class="step-icon">📡</div>
+              <div class="step-content">
+                <div class="step-name">Signal Acquisition</div>
+                <div class="step-desc">Capturing PPG waveform data</div>
+              </div>
+              <div class="step-status status-pending">⏳</div>
+            </div>
+            <div class="pipeline-step-item" id="step2">
+              <div class="step-icon">🔧</div>
+              <div class="step-content">
+                <div class="step-name">Noise Filtering</div>
+                <div class="step-desc">Removing artifacts and interference</div>
+              </div>
+              <div class="step-status status-pending">⏳</div>
+            </div>
+            <div class="pipeline-step-item" id="step3">
+              <div class="step-icon">🧮</div>
+              <div class="step-content">
+                <div class="step-name">Feature Extraction</div>
+                <div class="step-desc">Extracting 24 key physiological features</div>
+              </div>
+              <div class="step-status status-pending">⏳</div>
+            </div>
+            <div class="pipeline-step-item" id="step4">
+              <div class="step-icon">🧠</div>
+              <div class="step-content">
+                <div class="step-name">Model Analysis</div>
+                <div class="step-desc">Running ensemble AI models</div>
+              </div>
+              <div class="step-status status-pending">⏳</div>
+            </div>
+            <div class="pipeline-step-item" id="step5">
+              <div class="step-icon">📈</div>
+              <div class="step-content">
+                <div class="step-name">Glucose Prediction</div>
+                <div class="step-desc">Calculating final glucose estimation</div>
+              </div>
+              <div class="step-status status-pending">⏳</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- LIVE STATUS MESSAGE -->
+      <div class="card status-card">
+        <div class="card-header">
+          <div class="live-status-badge">⚡ LIVE STATUS</div>
+        </div>
+        <div class="card-body">
+          <div class="status-text" id="statusText">Initializing AI pipeline...</div>
+        </div>
+      </div>
+
+      <!-- AI MODEL CARD -->
+      <div class="card model-performance-card">
+        <div class="card-header">
+          <h3 class="card-title">ACTIVE MODEL ENSEMBLE</h3>
+        </div>
+        <div class="card-body">
+          <div class="model-name-large" id="activeModel">Loading...</div>
+          <div class="model-stats">
+            <div class="model-stat">
+              <span class="model-stat-label">Ensemble Accuracy:</span>
+              <span class="model-stat-value" id="accuracyValue">--</span>
+            </div>
+            <div class="progress-bar">
+              <div class="progress-fill" id="accuracyFill" style="width: 0%"></div>
+            </div>
+            <div class="model-stats-grid">
+              <div class="model-stat">
+                <span class="model-stat-label">⚡ Inference Time:</span>
+                <span class="model-stat-value" id="inferenceTime">--</span>
+                <span class="model-stat-unit">ms</span>
+              </div>
+              <div class="model-stat">
+                <span class="model-stat-label">Confidence:</span>
+                <span class="model-stat-value" id="confidenceValue">--</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- FOOTER - Same across all pages -->
+  <footer class="footer">
+    <div class="footer-content">
+      Built at <strong></strong> · 
+      
+    </div>
+  </footer>
+
+  <script src="index.js"></script>
+</body>
+</html>

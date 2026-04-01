@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PPG Signal Detection | GlucoAI</title>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- NAVBAR - Same as onboarding -->
+  <nav class="navbar">
+    <div class="navbar-logo">
+      <div class="pulse-dot"></div>
+      GlucoAI <span class="navbar-badge">| Detection</span>
+    </div>
+    <div class="navbar-links">
+      <a href="index.html" class="nav-link">Home</a>
+      <a href="index.html#features" class="nav-link">Features</a>
+      <a href="index.html#how-it-works" class="nav-link">How It Works</a>
+    </div>
+    <a href="index.html" class="btn btn-outline btn-sm">
+      ← Back to Home
+    </a>
+  </nav>
+
+  <!-- MAIN CONTENT -->
+  <main id="main-content">
+    
+    <!-- PAGE HEADER -->
+    <section class="section-header-page">
+      <div class="container">
+        <div class="badge badge-glow">
+          <div class="active-dot"></div>
+          Sensor Active · Real-Time PPG
+        </div>
+        <h1 class="page-title">PPG Signal Detection</h1>
+        <p class="page-subtitle">Upload PPG data or use simulated signals for glucose estimation</p>
+      </div>
+    </section>
+
+    <!-- DETECTION GRID -->
+    <div class="container">
+      <div class="grid grid-2">
+        
+        <!-- LEFT COLUMN: Signal Visualization -->
+        <div class="card signal-card">
+          <div class="card-header">
+            <h3 class="card-title">Live Signal Waveform</h3>
+            <span id="dataStatus" class="status-badge status-badge-warning">No Data</span>
+          </div>
+          <div class="card-body">
+            <div class="canvas-container">
+              <canvas id="ppgCanvas" width="800" height="200" style="width:100%; height:200px;"></canvas>
+              <div id="placeholderMessage" class="placeholder-message">
+                <div class="placeholder-icon">📊</div>
+                <div class="placeholder-text">No PPG data loaded</div>
+                <div class="placeholder-sub">Upload a CSV file or click "Use Simulated Data"</div>
+              </div>
+            </div>
+          </div>
+          <div class="card-footer">
+            <div class="stats-grid-mini">
+              <div class="stat-mini">
+                <div class="stat-mini-label">Heart Rate</div>
+                <div class="stat-mini-value" id="heartRate">--</div>
+                <div class="stat-mini-unit">BPM</div>
+              </div>
+              <div class="stat-mini">
+                <div class="stat-mini-label">Signal Strength</div>
+                <div class="signal-strength-bars" id="signalStrength">
+                  <div class="strength-bar"></div>
+                  <div class="strength-bar"></div>
+                  <div class="strength-bar"></div>
+                  <div class="strength-bar"></div>
+                  <div class="strength-bar"></div>
+                </div>
+                <div class="stat-mini-value" id="strengthText" style="font-size: 0.9rem;">--</div>
+              </div>
+              <div class="stat-mini">
+                <div class="stat-mini-label">Noise Level</div>
+                <div class="stat-mini-value" id="noiseLevel">--</div>
+                <div class="stat-mini-unit">interference</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- RIGHT COLUMN: Controls -->
+        <div class="controls-section">
+          
+          <!-- Input Card -->
+          <div class="card input-card">
+            <div class="card-header">
+              <h3 class="card-title">Data Source</h3>
+            </div>
+            <div class="card-body">
+              <div class="file-upload" onclick="document.getElementById('csvFile').click()">
+                <div class="upload-icon">📁</div>
+                <div class="upload-text">Upload PPG CSV File</div>
+                <div class="upload-hint">Click to browse</div>
+                <input type="file" id="csvFile" accept=".csv" style="display: none;">
+                <div id="fileName" class="file-name"></div>
+              </div>
+              <button class="btn btn-secondary btn-block" onclick="loadSimulatedData()">
+                🔄 Use Simulated Data
+              </button>
+              <div class="info-text">
+                CSV format: one value per line (0-100 range)
+              </div>
+            </div>
+          </div>
+
+          <!-- Detection Controls Card -->
+          <div class="card controls-card">
+            <div class="card-header">
+              <h3 class="card-title">Detection Controls</h3>
+            </div>
+            <div class="card-body">
+              <div class="button-group button-group-vertical">
+                <button class="btn btn-primary btn-lg" id="startBtn" onclick="startDetection()">
+                  🚀 Start Detection
+                </button>
+                <button class="btn btn-outline btn-lg" id="stopBtn" onclick="stopDetection()">
+                  ⏹️ Stop Detection
+                </button>
+              </div>
+              <div class="info-text info-text-warning">
+                Detection analyzes PPG data for glucose prediction
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Footer Info -->
+      <div class="footer-info">
+        <div class="info-text">Powered by Advanced AI Models</div>
+        <div class="model-badges">
+          <span class="badge-model">XGBoost</span>
+          <span class="badge-model">RNN (LSTM)</span>
+          <span class="badge-model">Deep Neural Network</span>
+          <span class="badge-model">Support Vector Regression</span>
+          <span class="badge-model">Ensemble Learning</span>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- LOADING OVERLAY - Standardized -->
+  <div id="loading-overlay" class="overlay" style="display: none;">
+    <div class="overlay-card">
+      <div class="spinner"></div>
+      <div class="overlay-message" id="progressMessage">Collecting signal...</div>
+      <div class="overlay-sub" id="progressSub">Analyzing PPG waveform data</div>
+    </div>
+  </div>
+
+  <!-- FOOTER - Same as onboarding -->
+  <footer class="footer">
+    <div class="footer-content">
+      Built at <strong></strong> · 
+      
+    </div>
+  </footer>
+
+  <script src="index.js"></script>
+</body>
+</html>

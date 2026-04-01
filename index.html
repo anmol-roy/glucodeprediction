@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GlucoAI | AI-Based Glucose Prediction System</title>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="navbar-logo">
+      <div class="pulse-dot"></div>
+      GlucoAI
+    </div>
+    <div class="navbar-links">
+      <a href="#problem"      class="nav-link">Problem</a>
+      <a href="#solution"     class="nav-link">Solution</a>
+      <a href="#features"     class="nav-link">Features</a>
+      <a href="#how-it-works" class="nav-link">Pipeline</a>
+      <a href="#models"       class="nav-link">Models</a>
+    </div>
+    <a href="detect.html" class="btn btn-primary btn-sm">Start Detection</a>
+  </nav>
+
+  <main>
+
+    <!-- HERO -->
+    <section id="hero" class="section-hero">
+      <div class="hero-glow"></div>
+      <div class="container">
+
+        <div class="badge badge-glow">
+          <span class="active-dot"></span>
+          Non-invasive &middot; AI-Powered &middot; Real-Time
+        </div>
+
+        <h1 class="page-title">
+          <span class="text-gradient">AI-Based Glucose</span><br/>
+          Prediction System
+        </h1>
+
+        <p class="page-subtitle">
+          Non-invasive blood glucose monitoring using PPG + SBP/DBP signals and
+          advanced machine learning — no needles, no pain, instant insights.
+        </p>
+
+        <div class="button-group">
+          <a href="detect.html" class="btn btn-primary btn-lg">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none"
+                 stroke="currentColor" stroke-width="2.5">
+              <circle cx="12" cy="12" r="10"/>
+              <polygon points="10 8 16 12 10 16 10 8"/>
+            </svg>
+            Start Smart Detection
+          </a>
+          <a href="#features" class="btn btn-outline btn-lg">Explore Features</a>
+        </div>
+
+        <!-- ECG strip — duplicated path so scroll looks seamless -->
+        <div class="ecg-wave">
+          <svg class="ecg-svg" viewBox="0 0 1200 70" preserveAspectRatio="none">
+            <path class="ecg-path" d="
+              M0,35 L55,35 L63,35 L68,18 L75,52 L81,4 L89,64 L96,18 L102,35
+              L165,35 L173,35 L178,18 L185,52 L191,4 L199,64 L206,18 L212,35
+              L275,35 L283,35 L288,18 L295,52 L301,4 L309,64 L316,18 L322,35
+              L385,35 L393,35 L398,18 L405,52 L411,4 L419,64 L426,18 L432,35
+              L495,35 L503,35 L508,18 L515,52 L521,4 L529,64 L536,18 L542,35
+              L605,35 L613,35 L618,18 L625,52 L631,4 L639,64 L646,18 L652,35
+              L715,35 L723,35 L728,18 L735,52 L741,4 L749,64 L756,18 L762,35
+              L825,35 L833,35 L838,18 L845,52 L851,4 L859,64 L866,18 L872,35
+              L935,35 L943,35 L948,18 L955,52 L961,4 L969,64 L976,18 L982,35
+              L1045,35 L1053,35 L1058,18 L1065,52 L1071,4 L1079,64 L1086,18 L1092,35
+              L1155,35 L1200,35
+            "/>
+          </svg>
+        </div>
+
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-number">94%</div>
+            <div class="stat-label">XGBoost Accuracy</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number">0</div>
+            <div class="stat-label">Needles Required</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number">&lt;2s</div>
+            <div class="stat-label">Prediction Time</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number">5</div>
+            <div class="stat-label">ML Models</div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- PROBLEM -->
+    <section id="problem" class="section">
+      <div class="container">
+        <div class="section-header reveal">
+          <div class="badge">The Challenge</div>
+          <h2 class="section-title">Traditional Methods Are Broken</h2>
+          <p class="section-desc">Existing glucose monitoring is invasive, painful, and impractical for continuous use.</p>
+        </div>
+        <div class="grid grid-3">
+          <div class="card card-hover problem-card reveal">
+            <div class="card-icon">🩸</div>
+            <h3 class="card-title">Painful Finger-Prick Tests</h3>
+            <p class="card-desc">Repeated needle pricks cause pain, skin damage, and anxiety — especially for daily diabetics.</p>
+          </div>
+          <div class="card card-hover problem-card reveal">
+            <div class="card-icon">⏱️</div>
+            <h3 class="card-title">Inconvenient Monitoring</h3>
+            <p class="card-desc">CGM devices are expensive, require sensor insertion, and need regular re-calibration.</p>
+          </div>
+          <div class="card card-hover problem-card reveal">
+            <div class="card-icon">⚠️</div>
+            <h3 class="card-title">Delayed Detection Risks</h3>
+            <p class="card-desc">Hypo/hyperglycaemic episodes often go undetected until dangerous symptoms appear.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SOLUTION -->
+    <section id="solution" class="section section-alt">
+      <div class="container">
+        <div class="section-header reveal">
+          <div class="badge">Our Innovation</div>
+          <h2 class="section-title">The Smarter Way to Monitor</h2>
+          <p class="section-desc">Reimagined glucose monitoring using PPG + SBP/DBP and AI — no needles, no hassle.</p>
+        </div>
+        <div class="grid grid-3">
+          <div class="card card-hover solution-card reveal">
+            <div class="card-icon">📡</div>
+            <h3 class="card-title">Multi-Signal Input</h3>
+            <p class="card-desc">PPG waveform + systolic/diastolic blood pressure columns — richer features, higher accuracy.</p>
+          </div>
+          <div class="card card-hover solution-card reveal">
+            <div class="card-icon">🤖</div>
+            <h3 class="card-title">AI-Powered Engine</h3>
+            <p class="card-desc">XGBoost primary ensemble + RNN next-hour forecaster deliver 94% accurate predictions.</p>
+          </div>
+          <div class="card card-hover solution-card reveal">
+            <div class="card-icon">⚡</div>
+            <h3 class="card-title">Real-Time Alerts</h3>
+            <p class="card-desc">Instant hypo/hyperglycaemia risk notifications with a 1-hour predictive forecast.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FEATURES -->
+    <section id="features" class="section">
+      <div class="container">
+        <div class="section-header reveal">
+          <div class="badge">Core Features</div>
+          <h2 class="section-title">Everything You Need</h2>
+          <p class="section-desc">Five integrated modules for complete non-invasive glucose intelligence.</p>
+        </div>
+        <div class="grid grid-4">
+          <div class="card feature-card reveal">
+            <div class="feature-badge">PPG</div>
+            <div class="card-icon-large">📶</div>
+            <h3 class="card-title">PPG Signal Detection</h3>
+            <p class="card-desc">Captures raw photoplethysmography waveforms with high fidelity.</p>
+          </div>
+          <div class="card feature-card reveal">
+            <div class="feature-badge">BP</div>
+            <div class="card-icon-large">🩺</div>
+            <h3 class="card-title">SBP / DBP Analysis</h3>
+            <p class="card-desc">Integrates systolic &amp; diastolic BP for a richer feature set.</p>
+          </div>
+          <div class="card feature-card reveal">
+            <div class="feature-badge">CURRENT</div>
+            <div class="card-icon-large">📊</div>
+            <h3 class="card-title">Current Glucose</h3>
+            <p class="card-desc">Predicts real-time blood glucose level with 94% accuracy.</p>
+          </div>
+          <div class="card feature-card reveal">
+            <div class="feature-badge">FORECAST</div>
+            <div class="card-icon-large">🔮</div>
+            <h3 class="card-title">Next-Hour Prediction</h3>
+            <p class="card-desc">Projects glucose trend 60 minutes ahead using RNN-LSTM.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PIPELINE -->
+    <section id="how-it-works" class="section section-alt">
+      <div class="container">
+        <div class="section-header reveal">
+          <div class="badge">Pipeline</div>
+          <h2 class="section-title">How It Works</h2>
+          <p class="section-desc">From raw signal to glucose prediction in under 2 seconds.</p>
+        </div>
+        <div class="pipeline">
+          <div class="pipeline-step pipe-step reveal">
+            <div class="step-icon">💡</div>
+            <div class="step-number">01</div>
+            <h4 class="step-title">PPG Signal</h4>
+            <p class="step-desc">Raw waveform captured</p>
+          </div>
+          <div class="pipeline-arrow">→</div>
+          <div class="pipeline-step pipe-step reveal">
+            <div class="step-icon">🔧</div>
+            <div class="step-number">02</div>
+            <h4 class="step-title">Filtering</h4>
+            <p class="step-desc">Noise &amp; artefact removal</p>
+          </div>
+          <div class="pipeline-arrow">→</div>
+          <div class="pipeline-step pipe-step reveal">
+            <div class="step-icon">🧮</div>
+            <div class="step-number">03</div>
+            <h4 class="step-title">Feature Extraction</h4>
+            <p class="step-desc">Mean, IQR, LogE, KTE</p>
+          </div>
+          <div class="pipeline-arrow">→</div>
+          <div class="pipeline-step pipe-step reveal">
+            <div class="step-icon">🧠</div>
+            <div class="step-number">04</div>
+            <h4 class="step-title">ML Inference</h4>
+            <p class="step-desc">XGBoost + RNN ensemble</p>
+          </div>
+          <div class="pipeline-arrow">→</div>
+          <div class="pipeline-step pipe-step reveal">
+            <div class="step-icon">📈</div>
+            <div class="step-number">05</div>
+            <h4 class="step-title">Prediction</h4>
+            <p class="step-desc">mg/dL + risk alert</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MODELS -->
+    <section id="models" class="section">
+      <div class="container">
+        <div class="section-header reveal">
+          <div class="badge">AI Models</div>
+          <h2 class="section-title">Powered by 5 ML Architectures</h2>
+          <p class="section-desc">XGBoost leads at 94% accuracy; RNN handles next-hour sequential forecasting.</p>
+        </div>
+        <div class="models-list reveal">
+          <div class="model-item">
+            <div class="model-info">
+              <span class="model-name">XGBoost</span>
+              <span class="model-full">Extreme Gradient Boosting</span>
+            </div>
+            <div class="progress-bar"><div class="progress-fill" data-width="94"></div></div>
+            <span class="model-accuracy">94%</span>
+          </div>
+          <div class="model-item">
+            <div class="model-info">
+              <span class="model-name">RNN-LSTM</span>
+              <span class="model-full">Recurrent Neural Network</span>
+            </div>
+            <div class="progress-bar"><div class="progress-fill" data-width="91"></div></div>
+            <span class="model-accuracy">91%</span>
+          </div>
+          <div class="model-item">
+            <div class="model-info">
+              <span class="model-name">DNN</span>
+              <span class="model-full">Deep Neural Network</span>
+            </div>
+            <div class="progress-bar"><div class="progress-fill" data-width="88"></div></div>
+            <span class="model-accuracy">88%</span>
+          </div>
+          <div class="model-item">
+            <div class="model-info">
+              <span class="model-name">SVR</span>
+              <span class="model-full">Support Vector Regression</span>
+            </div>
+            <div class="progress-bar"><div class="progress-fill" data-width="84"></div></div>
+            <span class="model-accuracy">84%</span>
+          </div>
+          <div class="model-item">
+            <div class="model-info">
+              <span class="model-name">Decision Tree</span>
+              <span class="model-full">Tree-based Regressor</span>
+            </div>
+            <div class="progress-bar"><div class="progress-fill" data-width="82"></div></div>
+            <span class="model-accuracy">82%</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section id="cta" class="section section-cta">
+      <div class="container">
+        <div class="cta-card reveal">
+          <div class="badge badge-center">Ready to Start?</div>
+          <h2 class="cta-title">Take Control of Your Health with AI-Powered Insights</h2>
+          <p class="cta-subtitle">Non-invasive, accurate, and real-time — your glucose intelligence starts here.</p>
+          <div class="button-group" style="justify-content:center; margin-top:1.8rem;">
+            <a href="detect.html" class="btn btn-primary btn-lg">Start Detection</a>
+            <a href="#how-it-works" class="btn btn-outline btn-lg">See How It Works</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <span class="footer-logo">GlucoAI</span>
+        <span class="footer-sep">·</span>
+        <span>IIIT Naya Raipur — Research Prototype</span>
+        <span class="footer-sep">·</span>
+        <span>Not for clinical use</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    window.addEventListener('scroll', () => {
+      document.querySelector('.navbar').classList.toggle('scrolled', window.scrollY > 40);
+    });
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (!e.isIntersecting) return;
+        e.target.classList.add('visible');
+        e.target.querySelectorAll('.progress-fill[data-width]').forEach(bar => {
+          bar.style.width = bar.dataset.width + '%';
+        });
+      });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.reveal, .problem-card, .solution-card, .feature-card, .pipe-step, .models-list, .cta-card').forEach(el => {
+      el.classList.add('reveal');
+      obs.observe(el);
+    });
+  </script>
+</body>
+</html>

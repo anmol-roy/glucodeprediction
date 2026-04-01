@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Glucose Analysis Report | GlucoAI</title>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- NAVBAR - Same across all pages -->
+  <nav class="navbar">
+    <div class="navbar-logo">
+      <div class="pulse-dot"></div>
+      GlucoAI <span class="navbar-badge">| Report</span>
+    </div>
+    <div class="navbar-links">
+      <a href="index.html" class="nav-link">Home</a>
+      <a href="detect.html" class="nav-link">Detection</a>
+      <a href="index.html#features" class="nav-link">Features</a>
+    </div>
+    <a href="detect.html" class="btn btn-primary btn-sm">
+      New Test →
+    </a>
+  </nav>
+
+  <!-- MAIN CONTENT -->
+  <main id="main-content">
+    
+    <!-- REPORT CONTAINER -->
+    <div class="report-container">
+      
+      <!-- REPORT HEADER -->
+      <div class="report-header">
+        <h1 class="page-title">Glucose Analysis Report</h1>
+        <p class="page-subtitle">AI-Based Non-Invasive PPG Analysis | Clinical Summary</p>
+        <div class="report-meta">
+          <div class="meta-item">
+            <span class="meta-label">Report ID:</span>
+            <span class="meta-value" id="reportId">--</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label">Date & Time:</span>
+            <span class="meta-value" id="reportDate">--</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label">Analysis Method:</span>
+            <span class="meta-value">PPG + AI Ensemble</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- RESULTS GRID -->
+      <div class="grid grid-2">
+        <!-- Current Glucose Card -->
+        <div class="card result-card">
+          <div class="card-header">
+            <div class="result-label">🩸 Current Glucose Level</div>
+          </div>
+          <div class="card-body">
+            <div class="result-value" id="currentGlucose">--</div>
+            <div class="result-unit">mg/dL</div>
+            <div class="result-range" id="currentRange"></div>
+            <div id="currentTrend" class="trend-indicator"></div>
+          </div>
+        </div>
+
+        <!-- Predicted Glucose Card -->
+        <div class="card result-card">
+          <div class="card-header">
+            <div class="result-label">⏱ Predicted (Next Hour)</div>
+          </div>
+          <div class="card-body">
+            <div class="result-value" id="predictedGlucose">--</div>
+            <div class="result-unit">mg/dL</div>
+            <div class="result-range" id="predictedRange"></div>
+            <div id="predictedTrend" class="trend-indicator"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- GRAPH SECTION -->
+      <div class="card graph-card">
+        <div class="card-header">
+          <h3 class="card-title">📊 Glucose Trend Analysis</h3>
+          <span class="info-text">Past → Current → Predicted</span>
+        </div>
+        <div class="card-body">
+          <div class="graph-container">
+            <canvas id="glucoseChart"></canvas>
+          </div>
+        </div>
+      </div>
+
+      <!-- ALERT SECTION -->
+      <div id="alertBox" class="alert-box"></div>
+
+      <!-- DETAILED METRICS -->
+      <div class="card metrics-card">
+        <div class="card-header">
+          <h3 class="card-title">📋 Clinical Measurements</h3>
+        </div>
+        <div class="card-body">
+          <div class="metrics-grid">
+            <div class="metric-item">
+              <span class="metric-label">Heart Rate (from PPG)</span>
+              <span class="metric-value" id="heartRate">-- <span class="metric-unit">BPM</span></span>
+            </div>
+            <div class="metric-item">
+              <span class="metric-label">Signal Quality Index</span>
+              <span class="metric-value" id="signalQuality">--</span>
+            </div>
+            <div class="metric-item">
+              <span class="metric-label">Prediction Confidence</span>
+              <span class="metric-value" id="confidence">--</span>
+            </div>
+            <div class="metric-item">
+              <span class="metric-label">AI Model Used</span>
+              <span class="metric-value" id="modelUsed">--</span>
+            </div>
+            <div class="metric-item">
+              <span class="metric-label">Model Accuracy</span>
+              <span class="metric-value" id="modelAccuracy">--</span>
+            </div>
+            <div class="metric-item">
+              <span class="metric-label">Processing Time</span>
+              <span class="metric-value" id="processingTime">-- <span class="metric-unit">ms</span></span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- RECOMMENDATIONS -->
+      <div class="card recommendations-card">
+        <div class="card-header">
+          <h3 class="card-title">💊 Clinical Recommendations</h3>
+        </div>
+        <div class="card-body">
+          <ul class="suggestions-list" id="suggestionsList">
+            <li class="suggestion-item">Loading recommendations...</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- DISCLAIMER -->
+      <div class="disclaimer-card">
+        <div class="disclaimer-content">
+          <strong>⚠️ Disclaimer:</strong> This is an AI-assisted screening tool and not a substitute for professional medical advice. 
+          Results are based on PPG signal analysis and machine learning models trained on clinical datasets. 
+          Please consult a healthcare provider for clinical decisions.
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- ACTION BUTTONS SECTION -->
+  <div class="action-section">
+    <div class="container">
+      <div class="button-group">
+        <button class="btn btn-outline" onclick="window.print()">
+          🖨️ Print Report
+        </button>
+        <button class="btn btn-outline" onclick="downloadReport()">
+          📄 Download Report
+        </button>
+        <button class="btn btn-primary" onclick="startNew()">
+          🔁 Start New Test
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER - Same across all pages -->
+  <footer class="footer">
+    <div class="footer-content">
+      Built at <strong></strong> · 
+      
+    </div>
+  </footer>
+
+  <script src="index.js"></script>
+</body>
+</html>
