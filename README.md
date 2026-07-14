@@ -1,5 +1,4 @@
 # GlucoAI: AI-Based Glucose Prediction System
-[![Ask DeepWiki](https://devin.ai/assets/askdeepwiki.png)](https://deepwiki.com/anmol-roy/glucodeprediction)
 
 ## Overview
 
